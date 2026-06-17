@@ -18,23 +18,38 @@ Descarga la versión **3.10 o superior** para tu sistema operativo.
 **Windows:** ejecuta el instalador `.exe` y marca la opción  
 ☑ **"Add Python to PATH"** antes de hacer clic en *Install Now*.
 
+> Nota para Windows: en algunas ocasiones, al escribir `python` o `python3`, Windows puede abrir Microsoft Store o solicitar instalar Python desde allí. Si ocurre, puedes instalar Python desde Microsoft Store o, preferiblemente, desde la página oficial de Python y asegurarte de marcar **"Add Python to PATH"** durante la instalación.
+
 **macOS:** ejecuta el instalador `.pkg` y sigue los pasos del asistente.
 
 Para verificar que la instalación fue exitosa, abre una terminal y escribe:
 
 ```bash
+# macOS / Linux
 python3 --version
 ```
 
-Deberías ver algo como `Python 3.11.x`.
+```bat
+:: Windows
+python --version
+```
+
+Deberías ver algo como `Python 3.11.x` o superior.
 
 ---
 
-### 2. Crear y activar el entorno virtual
+### 2. Crear y activar el entorno virtual (opcional)
+
+El entorno virtual es recomendable porque mantiene las dependencias del proyecto separadas de otros programas de Python instalados en tu computadora. Sin embargo, para este laboratorio es alternativo: si prefieres una ejecución más simple, puedes omitir este paso e instalar las dependencias directamente con `python -m pip install -r requirements.txt`.
 
 ```bash
-# Crear el entorno (solo la primera vez)
+# Crear el entorno en macOS / Linux (solo la primera vez)
 python3 -m venv env
+```
+
+```bat
+:: Crear el entorno en Windows (solo la primera vez)
+python -m venv env
 ```
 
 ```bash
@@ -42,23 +57,37 @@ python3 -m venv env
 source env/bin/activate
 ```
 
-```bash
-# Activar en Windows
-env\Scripts\activate
+```bat
+:: Activar en Windows
+env\Scripts\activate.bat
 ```
 
 > Cuando el entorno está activo verás `(env)` al inicio de la línea de tu terminal.  
 > Para desactivarlo cuando termines: `deactivate`
 
-### 2. Instalar dependencias
+### 3. Instalar dependencias
 
 ```bash
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 ```
 
-### 2. Pegar tu clave API de Cohere
+> Si estás en macOS/Linux y no activaste el entorno virtual, usa `python3 -m pip install -r requirements.txt`.
 
-Abre el archivo `.streamlit/secrets.toml` y reemplaza el texto de ejemplo:
+### 4. Pegar tu clave API de Cohere
+
+Si el archivo `.streamlit/secrets.toml` no existe, créalo copiando el ejemplo:
+
+```bash
+# macOS / Linux
+cp .streamlit/secrets.toml.example .streamlit/secrets.toml
+```
+
+```bat
+:: Windows
+copy .streamlit\secrets.toml.example .streamlit\secrets.toml
+```
+
+Luego abre `.streamlit/secrets.toml` y reemplaza el texto de ejemplo:
 
 ```toml
 COHERE_API_KEY = "PEGA_AQUI_TU_CLAVE_API"
@@ -66,7 +95,7 @@ COHERE_API_KEY = "PEGA_AQUI_TU_CLAVE_API"
 
 Obtén tu clave gratuita en: https://dashboard.cohere.ai/api-keys
 
-### 3. Ejecutar la aplicación
+### 5. Ejecutar la aplicación
 
 ```bash
 streamlit run tutor.py
@@ -96,7 +125,8 @@ tutor-inteligente-estudiante/
 ├── requirements.txt      ← dependencias Python
 ├── .gitignore            ← excluye la clave API y los perfiles
 ├── .streamlit/
-│   └── secrets.toml      ← pon aquí tu clave API
+│   ├── secrets.toml.example ← plantilla segura
+│   └── secrets.toml         ← pon aquí tu clave API, no se sube a git
 └── data/                 ← se crea automáticamente al primer uso
     └── perfiles.json     ← perfil de cada estudiante
 ```
