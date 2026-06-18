@@ -68,7 +68,7 @@ env\Scripts\activate.bat
 ### 3. Instalar dependencias
 
 ```bash
-python -m pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 > Si estás en macOS/Linux y no activaste el entorno virtual, usa `python3 -m pip install -r requirements.txt`.
