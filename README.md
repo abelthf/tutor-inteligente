@@ -75,19 +75,8 @@ python -m pip install -r requirements.txt
 
 ### 4. Pegar tu clave API de Cohere
 
-Si el archivo `.streamlit/secrets.toml` no existe, créalo copiando el ejemplo:
-
-```bash
-# macOS / Linux
-cp .streamlit/secrets.toml.example .streamlit/secrets.toml
-```
-
-```bat
-:: Windows
-copy .streamlit\secrets.toml.example .streamlit\secrets.toml
-```
-
-Luego abre `.streamlit/secrets.toml` y reemplaza el texto de ejemplo:
+El proyecto ya incluye la carpeta `.streamlit` y el archivo `.streamlit/secrets.toml`.
+Abre ese archivo y reemplaza el texto de ejemplo:
 
 ```toml
 COHERE_API_KEY = "PEGA_AQUI_TU_CLAVE_API"
@@ -125,8 +114,7 @@ tutor-inteligente-estudiante/
 ├── requirements.txt      ← dependencias Python
 ├── .gitignore            ← excluye la clave API y los perfiles
 ├── .streamlit/
-│   ├── secrets.toml.example ← plantilla segura
-│   └── secrets.toml         ← pon aquí tu clave API, no se sube a git
+│   └── secrets.toml      ← pon aquí tu clave API
 └── data/                 ← se crea automáticamente al primer uso
     └── perfiles.json     ← perfil de cada estudiante
 ```
